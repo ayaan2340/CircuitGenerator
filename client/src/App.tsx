@@ -1,14 +1,14 @@
 import axios, { type AxiosResponse } from 'axios'
-import './App.css'
+import './index.css'
 import { useState } from 'react'
 
 function App() {
   const [displayName, setDisplayName] = useState<string>("");
   
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ padding: '20px', borderBottom: '1px solid #ccc', backgroundColor: '#f5f5f5', flexShrink: 0 }}>
-        <h1>Circuit Generator</h1>
+    <div className="h-full w-full flex flex-col">
+      <div className="p-5 border-b border-gray-300 bg-gray-100">
+        <h1 className="text-2xl font-bold">Circuit Generator</h1>
         {displayName && <p>{displayName}</p>}
         <button 
           onClick={() => {
@@ -16,21 +16,16 @@ function App() {
               setDisplayName(res.data);
             }) 
           }}
-          style={{ padding: '10px 20px', marginRight: '10px' }}
+          className="px-5 py-2 mr-2 rounded border border-transparent bg-gray-900 text-white hover:border-indigo-500 transition-colors"
         >
           Test API Connection
         </button>
       </div>
       
-      <div style={{ flex: 1, overflow: 'hidden' }}>
+      <div className="flex-1">
         <iframe 
           src="/war/circuitjs.html"
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            border: 'none',
-            display: 'block'
-          }}
+          className="w-full h-full border-0 block"
           title="Circuit Simulator"
         />
       </div>
