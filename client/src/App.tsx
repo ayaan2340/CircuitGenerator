@@ -6,28 +6,45 @@ function App() {
   const [displayName, setDisplayName] = useState<string>("");
   
   return (
-    <div className="h-full w-full flex flex-col">
-      <div className="p-5 border-b border-gray-300 bg-gray-100">
-        <h1 className="text-2xl font-bold">Circuit Generator</h1>
-        {displayName && <p>{displayName}</p>}
-        <button 
-          onClick={() => {
-            axios.get(`${import.meta.env.VITE_SERVER_URL}/api/testing`).then((res: AxiosResponse<string>) => {
-              setDisplayName(res.data);
-            }) 
-          }}
-          className="px-5 py-2 mr-2 rounded border border-transparent bg-gray-900 text-white hover:border-indigo-500 transition-colors"
-        >
-          Test API Connection
-        </button>
+    <div className="h-full w-full flex flex-col bg-background p-6">
+      <div className="flex justify-center flex-col items-center pb-2">
+        <h1 className="text-2xl font-bold text-accent">Circuit Generator</h1>
+        <div className="flex flex-col items-center">
+          <p className="text-sm text-accent">
+            This is a tool to generate circuits.
+          </p>
+        </div>
       </div>
-      
-      <div className="flex-1">
-        <iframe 
-          src="/war/circuitjs.html"
-          className="w-full h-full border-0 block"
-          title="Circuit Simulator"
-        />
+      {/* Main content: side by side */}
+      <div className="flex-1 flex flex-row gap-4 min-h-0">
+        {/* Circuit Simulator */}
+        <div className="flex-1 min-w-0 h-full">
+          <iframe 
+            src="/war/circuitjs.html"
+            className="w-full h-full border-0 block min-h-[400px]"
+            title="Circuit Simulator"
+          />
+        </div>
+        {/* Chat Box */}
+        <div className="w-[350px] bg-[#23280b] rounded-lg flex flex-col h-full min-h-[400px] border border-accent">
+          <div className="flex-1 overflow-y-auto p-4 space-y-2" id="chat-messages">
+            {/* Example messages, replace with state later */}
+            <div className="text-xs text-accent">Welcome to the chat!</div>
+          </div>
+          <form className="p-2 border-t border-accent flex items-center gap-2">
+            <input
+              type="text"
+              className="flex-1 rounded px-2 py-1 bg-background text-primary outline-none border border-accent"
+              placeholder="Type your message..."
+            />
+            <button
+              type="submit"
+              className="bg-accent text-background px-3 py-1 rounded font-semibold hover:opacity-90 transition"
+            >
+              Send
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )
