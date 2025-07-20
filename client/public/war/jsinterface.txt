@@ -1,0 +1,8 @@
+# Simple Circuit Interface
+# This file enables JavaScript control of the circuit simulator
+
+# Basic resistor circuit
+r 100 100 200 100 0 1000
+v 200 100 200 200 0 0 0 5
+w 100 200 200 200 0
+w 100 100 100 200 0 
